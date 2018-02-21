@@ -1,15 +1,25 @@
 mixin header()
     header(class="header header-fix")
-        .logo
-            a(href="/")
-                include ../../img/logo.svg
-        nav
-            ul
-                li
-                    a(href="#") Ссылка первая
-                li
-                    a(href="#") Ссылка вторая
-                li
-                    a(href="#") Ссылка третья
-                li
-                    a(href="#") Ссылка четвёртая
+        .container.header-container
+            .header-left
+                .logo
+                    a(href="/")
+                        include ../../img/logo.svg
+                nav.header-nav
+                    ul.list-inline
+                        li
+                            a(href="#") About us
+                        li
+                            a(href="#") Services
+                        li
+                            a(href="#") Join us
+                        li
+                            a(href="#") Contacts
+                        li
+                            a.header-auth(href="#") Sign in
+
+            .header-right
+                .header-tel
+                    a(href="tel:6178889692") (617) 888-9692
+                .header-request
+                    a(href="#" class="btn btn--md btn--main")  Request a quote

@@ -1,5 +1,6 @@
 webpackJsonp([0],[
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -298,7 +299,6 @@ var throttle = exports.throttle = function throttle(fn) {
 };
 
 /***/ }),
-/* 1 */,
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -321,7 +321,7 @@ var _Home = __webpack_require__(6);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _helpers = __webpack_require__(0);
+var _helpers = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -400,7 +400,6 @@ var Common = exports.Common = function () {
      */
     value: function init() {
       console.log(this.messages.init);
-
       this.example();
     }
   }]);
@@ -569,7 +568,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @module Home
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-var _helpers = __webpack_require__(0);
+var _helpers = __webpack_require__(1);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -615,6 +614,7 @@ var Home = function () {
      */
     value: function init() {
       this.example();
+      console.log(TweenMax);
     }
   }]);
 

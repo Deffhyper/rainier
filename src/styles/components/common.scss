@@ -1,17 +1,17 @@
 body {
-  background-color: #fff;
-  color: $text-color;
-  font-size: inherit;
-  font-family: $font-regular;
-  line-height: 1.2;
-  min-height: 100%;
-  width: 100%;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  min-width: 320px;
-}
-html {
+  // fix footer to bottom
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
+
+.header, .footer {
+  flex: none;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+
+

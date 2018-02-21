@@ -39,5 +39,6 @@ export default class Home {
    */
   init() {
     this.example();
+      console.log(TweenMax);
   }
 }

@@ -33,7 +33,6 @@ export class Common {
    */
   init() {
     console.log(this.messages.init);
-
     this.example();
   }
 }

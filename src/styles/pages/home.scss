@@ -1,1 +1,35 @@
 // home page styles
+
+.screen-first {
+  &__text {
+    text-align: center;
+    h1 {
+      color: #0a3e51;
+      text-transform: none;
+      max-width: 430px;
+      margin: 25vh auto 0;
+    }
+    p {
+      color: $text-accent;
+      font-family: $font-black;
+      margin-top: 10vh;
+    }
+    li {
+
+      &.active {
+        a {
+          width: 7px;
+          height: 7px;
+        }
+      }
+      a {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: $text-accent;
+      }
+    }
+  }
+
+}

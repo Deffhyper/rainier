@@ -1,0 +1,64 @@
+.header {
+  padding: 35px 0;
+
+  &-fix {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255,255,255, .2);
+  }
+
+  &-container {
+    display: flex;
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &-left {
+    margin-right: auto;
+  }
+
+  &-right {
+    margin-left: auto;
+  }
+
+  &-nav {
+
+    li:not(:last-child){
+      margin-right: 40px;
+    }
+    a {
+      color: #4b4a4a;
+      text-decoration: none;
+      font-family: $font-bold;
+      transition: color .3s ease-in-out;
+      &:hover {
+        color: $text-accent;
+      }
+    }
+    .header-auth {
+      color: $text-accent;
+    }
+  }
+
+  &-tel {
+    font-size: 16px;
+    font-family: $font-black;
+    margin-right: 35px;
+    a {
+      color: $text-color;
+    }
+  }
+}
+
+.logo {
+  width: 120px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 40px;
+  padding-top: 10px;
+}

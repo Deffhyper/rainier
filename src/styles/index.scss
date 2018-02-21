@@ -8,9 +8,12 @@
 @import 'partials/helpers';
 @import 'partials/keyframes';
 @import 'partials/svg';
+@import 'partials/typography';
 
 /* COMPONENTS */
 @import 'components/common';
+@import 'components/header';
+@import 'components/footer';
 
 /* PAGES */
 @import 'pages/home';

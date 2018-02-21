@@ -9,7 +9,8 @@ module.exports = {
   // Entry point
   entry: {
     'js/index': './src/js/index',
-    'js/index.jquery': './src/js/index.jquery'
+    'js/index.jquery': './src/js/index.jquery',
+    'js/index.gsap': './src/js/index.gsap'
   },
 
   // Output settings
