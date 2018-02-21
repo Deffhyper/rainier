@@ -1,0 +1,17 @@
+body {
+  background-color: #fff;
+  color: $text-color;
+  font-size: inherit;
+  font-family: $font-regular;
+  line-height: 1.2;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-width: 320px;
+}
+html {
+  height: 100%;
+}
