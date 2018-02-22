@@ -165,6 +165,7 @@ export class Resp {
   static get isMobile() {
     return window.matchMedia(`(max-width: 767px)`).matches;
   }
+
 }
 
 /**
@@ -183,6 +184,9 @@ export const css = {
  * @param {Number} length
  */
 export const randomString = (length = 10) => Math.random().toString(36).substr(2, length > 10 ? length : 10);
+
+
+
 
 /**
  * Returns a function, that, as long as it continues to be invoked, will not be triggered.

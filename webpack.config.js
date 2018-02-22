@@ -10,7 +10,8 @@ module.exports = {
   entry: {
     'js/index': './src/js/index',
     'js/index.jquery': './src/js/index.jquery',
-    'js/index.gsap': './src/js/index.gsap'
+    'js/index.gsap': './src/js/index.gsap',
+    'js/index.fullpage': './src/js/index.fullpage'
   },
 
   // Output settings

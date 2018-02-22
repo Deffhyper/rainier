@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
     <link href="static/css/index.css" rel="stylesheet">
-    <link rel="icon" href="static/favicon.ico">
+    <link rel="icon" href="static/favicon.png">
   </head>
   <body>
     <!-- SVG-->
@@ -143,28 +143,51 @@
     </header>
     <!-- Main content-->
     <main class="content" data-page="home">
-      <section class="fs-section">
-        <div class="screen-first">
-          <div class="screen-first__text">
-            <h1>Leave the logistics to us</h1>
-            <p>Scroll to explore</p>
-            <ul>
-              <li class="dot-first active">
-                <a href="#"></a>
-              </li>
-              <li class="dot-second">
-                <a href="#"></a>
-              </li>
-            </ul>
-          </div>
-          <div class="screen-first__imgs">
-            <div class="decor-1">
-              <img src="../img/">
+      <div id="fullpage">
+        <section class="fs-section" id="fp-1">
+          <div class="screen-first full-container">
+            <div class="screen-first__imgs">
+              <div class="decor decor-1">
+                <img src="static/img/main_cloud_sun.png">
+              </div>
+              <div class="decor decor-2">
+                <img src="static/img/main_clouds.png">
+              </div>
+              <div class="decor decor-3">
+                <img src="static/img/main_bird_small.png">
+              </div>
+              <div class="decor decor-4">
+                <img src="static/img/main_bird_big.png">
+              </div>
+              <div class="decor decor-5">
+                <img src="static/img/main_mountain_right.png">
+              </div>
+              <div class="decor decor-6">
+                <img src="static/img/main_mountains_left.png">
+              </div>
+              <div class="decor decor-7">
+                <img src="static/img/main_1part.png">
+              </div>
+              <div class="decor decor-8">
+                <img src="static/img/truck_all_sscreen.png">
+              </div>
+              <div class="screen-first__text">
+                <h1>Leave the logistics to us</h1>
+                <p>Scroll to explore</p>
+                <ul>
+                  <li class="dot-first active">
+                    <a href="#"></a>
+                  </li>
+                  <li class="dot-second">
+                    <a href="#"></a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="fs-section"></section>
+        </section>
+        <section class="fs-section" id="fp-2"></section>
+      </div>
     </main>
     <!-- Footer-->
     <footer class="footer">
@@ -175,6 +198,7 @@
     <!-- Scripts-->
     <script src="static/js/index.jquery.js"></script>
     <script src="static/js/index.gsap.js"></script>
+    <script src="static/js/index.fullpage.js"></script>
     <script src="static/js/index.js"></script>
   </body>
 </html>

@@ -1,18 +1,30 @@
 // home page styles
 
+.full-container {
+  padding: 1px 0;
+  min-height: 100vh;
+}
+
 .screen-first {
   &__text {
     text-align: center;
+    position: relative;
     h1 {
       color: #0a3e51;
       text-transform: none;
       max-width: 430px;
       margin: 25vh auto 0;
+      position: relative;
+      top: -40px;
+      opacity: 0;
     }
     p {
       color: $text-accent;
       font-family: $font-black;
       margin-top: 10vh;
+      position: relative;
+      top: -40px;
+      opacity: 0;
     }
     li {
 
@@ -32,4 +44,73 @@
     }
   }
 
+  &__imgs {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+
+    .decor {
+      position: absolute;
+    }
+
+    .decor-1 {
+      right: 125px;
+      bottom: 0;
+    }
+
+    .decor-2 {
+      left: 0;
+      opacity: 0;
+      bottom: 424px;
+    }
+
+    .decor-3 {
+      left: 0;
+      bottom: 440px;
+      opacity: 0;
+    }
+
+    .decor-4 {
+      left: 0;
+      bottom: 480px;
+      opacity: 0;
+    }
+
+    .decor-5 {
+      right: -200px;
+      bottom: 126px;
+    }
+
+    .decor-6 {
+      left: -200px;
+      bottom: 120px;
+    }
+
+    .decor-7 {
+      left: 0;
+      bottom: -70px;
+      width: 100%;
+      img {
+        max-width: none;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .decor-8{
+      left: 30px;
+      bottom: 2px;
+    }
+  }
+
 }
+
+#fs-car {
+  transform: translate3d(-200px, 0,0);
+  opacity: 0;
+}
+

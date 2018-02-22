@@ -9,6 +9,7 @@
     "openDocs": "start ./docs/index.html"
   },
   "dependencies": {
+    "fullpage.js": "^2.9.6",
     "gsap": "^1.20.4",
     "jquery": "^3.0.0"
   },

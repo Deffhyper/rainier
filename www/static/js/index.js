@@ -299,7 +299,8 @@ var throttle = exports.throttle = function throttle(fn) {
 };
 
 /***/ }),
-/* 2 */
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -313,11 +314,11 @@ var throttle = exports.throttle = function throttle(fn) {
 
 /** Import initialized-by-default modules/libs */
 
-__webpack_require__(3);
-
 __webpack_require__(4);
 
-var _Home = __webpack_require__(6);
+__webpack_require__(5);
+
+var _Home = __webpack_require__(7);
 
 var _Home2 = _interopRequireDefault(_Home);
 
@@ -342,7 +343,7 @@ switch (_helpers.currentPage) {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -413,7 +414,7 @@ var Common = exports.Common = function () {
 exports.default = new Common();
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,7 +432,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @module PublicAPI
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-var _Timer = __webpack_require__(5);
+var _Timer = __webpack_require__(6);
 
 var _Timer2 = _interopRequireDefault(_Timer);
 
@@ -472,7 +473,7 @@ var PublicAPI = exports.PublicAPI = function () {
 exports.default = window.PublicAPI = PublicAPI;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -552,7 +553,7 @@ var Timer = exports.Timer = function Timer() {
 exports.default = new Timer();
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -606,15 +607,69 @@ var Home = function () {
       console.log(this.message);
     }
   }, {
-    key: 'init',
+    key: 'fullpagescroll',
+    value: function fullpagescroll() {
+      $('#fullpage').fullpage({
+        anchors: ['fp-1', 'fp-2']
+      });
+    }
+  }, {
+    key: 'bannerAnimation',
+    value: function bannerAnimation() {
 
+      // top text animation
+
+      TweenMax.to($('.screen-first__text h1'), 1, { delay: .3, top: 0, autoAlpha: 1, ease: Power4.easeOut });
+      TweenMax.to($('.screen-first__text p'), 1.5, { delay: .7, top: 0, autoAlpha: 1, ease: Back.easeOut });
+
+      TweenMax.to($('.decor-1'), 1, { delay: .4, bottom: 290, ease: Back.easeOut });
+      TweenMax.to($('.decor-2'), 1, { delay: .4, left: 240, autoAlpha: 1, ease: Back.easeOut });
+      TweenMax.to($('.decor-3'), 1, { delay: .5, left: 640, autoAlpha: 1, ease: Back.easeOut });
+      TweenMax.to($('.decor-4'), 1, { delay: .8, left: 600, autoAlpha: 1, ease: Back.easeOut });
+      TweenMax.to($('.decor-6'), 1.2, { left: 0, ease: Power4.easeOut });
+      TweenMax.to($('.decor-5'), 1.4, { right: 0, ease: Power4.easeOut });
+      TweenMax.to($('.decor-8'), 1.9, { left: 600, ease: Power4.easeOut });
+    }
+  }, {
+    key: 'parallaxAnimation',
+    value: function parallaxAnimation() {
+      var request = null;
+      var mouse = { x: 0, y: 0 };
+      var cx = window.innerWidth / 2;
+      var cy = window.innerHeight / 2;
+
+      $('body').on('mousemove', function (event) {
+        mouse.x = event.pageX;
+        mouse.y = event.pageY;
+        cancelAnimationFrame(request);
+        request = requestAnimationFrame(update);
+      });
+
+      function update() {
+        var dx = mouse.x - cx;
+        var dy = mouse.y - cy;
+
+        $('.decor').each(function (index) {
+          TweenLite.to($(this), 1, {
+            x: dx / index + 10,
+            y: dy / index + 10,
+            ease: Power2.easeOut
+          });
+        });
+      }
+    }
 
     /**
      * Initialize Home page scripts.
      */
+
+  }, {
+    key: 'init',
     value: function init() {
       this.example();
-      console.log(TweenMax);
+      // this.fullpagescroll();
+      this.bannerAnimation();
+      this.parallaxAnimation();
     }
   }]);
 
@@ -624,5 +679,5 @@ var Home = function () {
 exports.default = Home;
 
 /***/ })
-],[2]);
+],[3]);
 //# sourceMappingURL=index.js.map
