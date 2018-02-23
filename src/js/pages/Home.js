@@ -5,6 +5,7 @@
  */
 
 import { Resp } from '../modules/dev/_helpers';
+import {randomDigit} from '../modules/dev/_helpers';
 
 export default class Home {
   /**
@@ -23,6 +24,8 @@ export default class Home {
       }
     };
 
+    console.log(randomDigit(2,9));
+
     // initialize after construction
     this.init();
 
@@ -37,25 +40,40 @@ export default class Home {
   };
 
   fullpagescroll(){
-    $('#fullpage').fullpage({
-      anchors:['fp-1', 'fp-2']
-    });
+    $('#fullpage').fullpage();
   }
 
   bannerAnimation(){
+    $('body').addClass('load');
 
     // top text animation
+      const $menu = $('.header'),
+            $topTitle = $('.screen-first__text h1'),
+            $topSubTItle = $('.screen-first__text p'),
+            $decor_1 = $('.decor-1'),
+            $decor_2 = $('.decor-2'),
+            $decor_3 = $('.decor-3'),
+            $decor_4 = $('.decor-4'),
+            $decor_5 = $('.decor-5'),
+            $decor_6 = $('.decor-6'),
+            $decor_7 = $('.decor-7'),
+            $decor_8 = $('.decor-8');
 
-    TweenMax.to($('.screen-first__text h1'), 1, {delay:.3, top:0, autoAlpha:1, ease:Power4.easeOut});
-    TweenMax.to($('.screen-first__text p'), 1.5, {delay:.7, top:0, autoAlpha:1, ease:Back.easeOut});
+      const tm = new TimelineLite({onComplete:this.parallaxAnimation});
 
-    TweenMax.to($('.decor-1'), 1,  {delay: .4, bottom:290, ease:Back.easeOut});
-    TweenMax.to($('.decor-2'), 1,  {delay: .4, left:240, autoAlpha:1, ease:Back.easeOut});
-    TweenMax.to($('.decor-3'), 1,  {delay: .5, left:640, autoAlpha:1, ease:Back.easeOut});
-    TweenMax.to($('.decor-4'), 1,  {delay: .8, left:600, autoAlpha:1, ease:Back.easeOut});
-    TweenMax.to($('.decor-6'), 1.2,  {left:0, ease:Power4.easeOut});
-    TweenMax.to($('.decor-5'), 1.4, {right:0, ease:Power4.easeOut});
-    TweenMax.to($('.decor-8'), 1.9, {left: 600, ease:Power4.easeOut});
+      tm.from($decor_7, 1, {bottom: -240, ease:Expo.easeOut}, "time-one")
+          .from($menu, .5, {top: -10, autoAlpha:0, ease:Expo.easeOut}, "time-one+=.5")
+          .from($topTitle, 1.25, {top:-40, autoAlpha:0, ease:Expo.easeOut}, "time-one+=.3")
+          .from($topSubTItle, 1.25, {top:-40, autoAlpha:0, ease:Expo.easeOut}, "time-one+=.6")
+
+          .from($decor_5, 2.7, {right: -740, autoAlpha:0, ease:Expo.easeInOut}, "time-one")
+          .from($decor_6, 2.7, {left: -1040, autoAlpha:0, ease:Expo.easeInOut}, "time-one")
+
+          .from($decor_1, 2.5, {bottom: 200, autoAlpha:0, ease:Expo.easeInOut}, "time-one+=1")
+          .from($decor_2, 3, {left: -100, autoAlpha:0, ease:Expo.easeInOut}, "time-one+=1.2")
+          .from($decor_3, 3, {left: -50, autoAlpha:0, ease:Expo.easeInOut}, "time-one+=1.2")
+          .from($decor_8, 4, {left: -300, ease:Expo.easeInOut}, "time-one+=1")
+          .from($decor_4, 3, {left: -50, autoAlpha:0, ease:Expo.easeInOut},"time-one+=1.2");
   }
 
 
@@ -78,16 +96,42 @@ export default class Home {
       let dx = mouse.x - cx;
       let dy = mouse.y - cy;
 
-
-
-
-      $('.decor').each(function (index) {
-        TweenLite.to($(this), 1, {
-          x: dx/index+10,
-          y: dy/index+10,
-          ease:Power2.easeOut
+        TweenLite.to($('.decor-1'), 0, {
+            x: dx / 10,
+            y: dy / 12,
+            ease: Power1.easeOut
         });
-      })
+
+        TweenLite.to($('.decor-2'), 0, {
+            x: dx / 14,
+            y: dy / 12,
+            ease: Power1.easeOut
+        });
+
+        TweenLite.to($('.decor-3'), 0, {
+            x: dx / 10,
+            y: dy / 12,
+            ease: Power1.easeOut
+        });
+
+        TweenLite.to($('.decor-4'), 0, {
+            x: dx / 20,
+            y: dy / 12,
+            ease: Power1.easeOut
+        });
+
+        TweenLite.to($('.decor-6'), 0, {
+            x: dx / 40,
+            y: dy / 20,
+            ease: Power1.easeOut
+        });
+
+        TweenLite.to($('.decor-5'), 0, {
+            x: dx / 40,
+            y: dy / 20,
+            ease: Power1.easeOut
+        });
+
 
 
     }
@@ -101,6 +145,6 @@ export default class Home {
     this.example();
     // this.fullpagescroll();
     this.bannerAnimation();
-    this.parallaxAnimation();
+
   }
 }

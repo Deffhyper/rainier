@@ -185,6 +185,8 @@ export const css = {
  */
 export const randomString = (length = 10) => Math.random().toString(36).substr(2, length > 10 ? length : 10);
 
+export const randomDigit = (min, max) => Math.floor(Math.random()*(max-min)) + min;
+
 
 
 
