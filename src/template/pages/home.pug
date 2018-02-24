@@ -6,28 +6,15 @@ block variables
 block main
     main.content(data-page='home')
         #fullpage
-            section#fp-1.fs-section
-                .screen-first.full-container
-
-                    .screen-first__imgs
+            section#fp-1.section
+                .screen.flex-centered-content
+                    .screen__imgs
                         include ../../img/image1.svg
-                        //.decor.scr_sun
-                        //    img(src="static/img/main_cloud_sun.png")
-                        //.decor.scr_cloud
-                        //    img(src="static/img/main_clouds.png")
                         .decor.scr_b_small
                             img(src="static/img/main_bird_small.png")
                         .decor.scr_b_big
                             img(src="static/img/main_bird_big.png")
-                        //.decor.scr_m_right
-                        //    img(src="static/img/main_mountain_right.png")
-                        //.decor.scr_m_left
-                        //    img(src="static/img/main_mountains_left.png")
-                        //.decor.scr_ground
-                        //    img(src="static/img/main_1part.png")
-                        //.decor.scr_truck
-                        //    img(src="static/img/truck_all_sscreen.png")
-                    .screen-first__text
+                    .screen__text
                         h1 Leave the logistics to us
                         p Scroll to explore
                         ul
@@ -36,10 +23,36 @@ block main
                             li.dot-second
                                 a(href="#")
 
+            section#fp-2.section
+                .screen-second.flex-centered-content
+
+                    .left-block.text-block
+                        h2 Who we are
+                        p Rainier is the dynamically growing logistics and transportation company, spanning thousands of locations in North America. We provide a full range of transportation services for both common and unusual freight, delivering time-sensitive and customized solutions.
+                        a(href="#", class="btn btn--secondary btn--lg") About us
+
+                    .right-block
+                        .screen-second__imgs
+                            .screen-second-slide.screen-second-slide__one.active
+                                .decor.canada_bg
+                                    img(src="static/img/screen2_canada_bg.png")
+                                .decor.canada_clouds
+                                    img(src="static/img/screen2_canada_sun_clouds.png")
+                                .decor.canada_ground
+                                    img(src="static/img/screen2_canada_ground.png")
+                                .decor.canada_forest
+                                    img(src="static/img/screen2_canada_forest.png")
+
+                            .screen-second-slide.screen-second-slide__two
+
+                            .screen-second-slide.screen-second-slide__three
 
 
-            section#fp-2.fs-section
-                p text
-
+            section.section.fp-auto-height
+                footer
+                    p this is footer
+        #scrollDown
+            a(href="#")
+                include ../../img/arrow.svg
 
 

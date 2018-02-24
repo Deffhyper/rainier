@@ -3,31 +3,35 @@
 body {
   opacity: 0;
   transition: .3s ease;
+  overflow-y: hidden;
   &.load {
     opacity: 1;
   }
+  .mainAnimationOver {
+    overflow-y: auto;
+  }
 }
+
+
 
 .full-container {
   padding: 1px 0;
   min-height: 100vh;
-
   max-width: 1500px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
-.screen-first {
-
-
+.screen {
+  overflow: hidden;
   &__text {
     text-align: center;
     position: relative;
+    width: 100%;
     h1 {
       color: #0a3e51;
       text-transform: none;
       max-width: 430px;
-      margin: 22vh auto 0;
+      margin: 0 auto;
       position: relative;
     }
     p {
@@ -39,7 +43,7 @@ body {
       margin-bottom: 0;
     }
     li {
-
+      position: relative;
       &.active {
         a {
           width: 7px;
@@ -58,83 +62,166 @@ body {
 
   &__imgs {
     position: absolute;
-    left: 0;
+    left: 50%;
     bottom: 0;
     right: 0;
+    overflow: hidden;
+    min-width: 1500px;
+    transform: translateX(-50%);
 
     svg {
-      position: relative;
-      width: 106%;
-      transform: translate(-50%, 0);
-      left: 50%;
       margin-bottom: -8px;
       overflow: visible;
     }
-
-
-    .decor {
-      position: absolute;
-    }
-
-    .scr_sun {
-      bottom: 234px;
-      right: 12%;
-      width: 24%;
-
-    }
-
-    .scr_cloud {
-      bottom: 350px;
-      left: 11%;
-      width: 25%;
-    }
-
-    .scr_b_small {
-      left: 38%;
-      bottom: 337px;
-    }
-
-    .scr_b_big {
-      left: 34%;
-      bottom: 357px;
-    }
-
-    .scr_m_right {
-      bottom: 110px;
-      right: 8%;
-      width: 33%;
-    }
-
-    .scr_m_left {
-      bottom: 120px;
-      left: -7%;
-      width: 54%;
-    }
-
-    .scr_ground {
-      left: 0;
-      bottom: -62px;
-      width: 100%;
-      overflow: hidden;
-      img {
-        max-width: 120%;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    .scr_truck{
-      left: 22%;
-      bottom: 2px;
-      width: 16%;
-    }
   }
 
+  .scr_b_small {
+    left: 38%;
+    bottom: 337px;
+  }
+
+  .scr_b_big {
+    left: 34%;
+    bottom: 357px;
+  }
 }
 
-#fs-car {
-  transform: translate3d(-200px, 0,0);
-  opacity: 0;
+.decor {
+  position: absolute;
 }
 
+#smartDot {
+  background-color: $text-accent;
+  border-radius: 50%;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  position: fixed;
+  z-index: 200;
+}
+
+.left-block {
+  width: 400px;
+  margin-left: 10%;
+  z-index: 1;
+}
+.text-block {
+  h2 {
+    margin-bottom: 15px;
+  }
+  p{
+    margin-bottom: 10px;
+  }
+}
+
+.fp-section {
+ overflow: hidden;
+}
+
+.Rounded_Rectangle_2 {
+  border-radius: 50%;
+  background-image: -moz-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
+  background-image: -webkit-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
+  background-image: -ms-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
+  position: absolute;
+  left: 60px;
+  top: 1384px;
+  width: 31px;
+  height: 31px;
+  z-index: 69;
+}
+
+
+#scrollDown {
+  a{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: $text-accent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    background-image: linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
+  }
+
+  svg {
+    path{
+      fill: #fff;
+    }
+    width: 15px;
+    height: 11px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: rotateZ(180deg);
+  }
+
+  &.active {
+    display: block;
+    a {
+      opacity: 1;
+      z-index: 102;
+      transform: scale(1);
+    }
+  }
+}
+
+#fp-2 {
+  background-image: url("../img/screen2_bg.png");
+  background-repeat: no-repeat;
+  background-position: 120% 0;
+  background-size: contain;
+}
+
+.screen-second__imgs {
+
+  .screen-second-slide {
+    display: none;
+    &.active {
+      display: block;
+    }
+
+    &__one {
+      .canada_bg {
+        position: absolute;
+        left: 0;
+        bottom: 114px;
+        width: 1030px;
+      }
+      .canada_ground {
+        bottom: 103px;
+        left: 14px;
+        width: 1000px;
+      }
+      .canada_forest {
+        bottom: 114px;
+        left: 14px;
+        width: 1000px;
+      }
+      .canada_clouds {
+        bottom: 305px;
+        right: -2%;
+        width: 70%;
+      }
+    }
+  }
+}
+
+.right-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  min-width: 60%;
+}
+
+.section {
+  height: 100vh;
+  overflow: hidden;
+}

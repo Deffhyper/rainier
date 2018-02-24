@@ -12,7 +12,22 @@
   <body>
     <!-- SVG-->
     <div class="svg-container" style="position: absolute; width: 0; height: 0; overflow: hidden;">
-      <svg xmlns="http://www.w3.org/2000/svg">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <path id="SVGID_1_" d="M0 0h264.3v279.9H0z" />
+        </defs>
+        <symbol id="icon-arrow" viewBox="0 0 264.3 279.9">
+          <style>
+            .st0 {
+              clip-path: url(#SVGID_2_)
+            }
+          </style>
+          <clipPath id="SVGID_2_">
+            <use xlink:href="#SVGID_1_" overflow="visible" />
+          </clipPath>
+          <path class="st0" d="M257.1 115.6L148.8 7.2c-1.2-1.2-2.4-1.8-3.6-3-.6-.6-1.2-.6-1.8-1.2-.6-.6-1.8-.6-2.4-1.2-.6-.6-1.8-.6-2.4-.6-.6 0-1.2-.6-2.4-.6s-3-.6-4.2-.6h-.6c-1.2 0-3 0-4.2.6-.6 0-1.2.6-1.8.6-.6 0-1.8.6-2.4.6-.6.6-1.8.6-2.4 1.2-.6.6-1.2.6-1.8 1.2-1.2.6-2.4 1.8-3.6 3h-.6L7.1 115.6c-9.5 9.5-9.5 24.4 0 33.9 4.8 4.8 10.7 7.1 16.7 7.1s11.9-2.4 16.7-7.1l67.9-67.9v174.5c0 13.1 10.7 23.8 23.8 23.8 13.1 0 23.8-10.7 23.8-23.8V81.6l67.9 67.9c4.8 4.8 10.7 7.1 16.7 7.1s11.9-2.4 16.7-7.1c9.3-9.5 9.3-24.4-.2-33.9"
+          />
+        </symbol>
         <symbol id="icon-vintage-logo" viewBox="0 0 84.1 115.5">
           <style>
             .st0 {
@@ -144,9 +159,9 @@
     <!-- Main content-->
     <main class="content" data-page="home">
       <div id="fullpage">
-        <section class="fs-section" id="fp-1">
-          <div class="screen-first full-container">
-            <div class="screen-first__imgs">
+        <section class="section" id="fp-1">
+          <div class="screen flex-centered-content">
+            <div class="screen__imgs">
               <?xml version="1.0" encoding="utf-8"?>
               <!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
               <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1925 525.5" style="enable-background:new 0 0 1925 525.5;" xml:space="preserve">
@@ -1084,26 +1099,14 @@
                     <path fill="#0A476C" d="M1.3,414.1l0.4-0.5l3.2,2.6l-0.4,0.5L1.3,414.1z" /> </g>
                 </g>
               </svg>
-              <!--.decor.scr_sun-->
-              <!--    img(src="static/img/main_cloud_sun.png")-->
-              <!--.decor.scr_cloud-->
-              <!--    img(src="static/img/main_clouds.png")-->
               <div class="decor scr_b_small">
                 <img src="static/img/main_bird_small.png">
               </div>
               <div class="decor scr_b_big">
                 <img src="static/img/main_bird_big.png">
               </div>
-              <!--.decor.scr_m_right-->
-              <!--    img(src="static/img/main_mountain_right.png")-->
-              <!--.decor.scr_m_left-->
-              <!--    img(src="static/img/main_mountains_left.png")-->
-              <!--.decor.scr_ground-->
-              <!--    img(src="static/img/main_1part.png")-->
-              <!--.decor.scr_truck-->
-              <!--    img(src="static/img/truck_all_sscreen.png")-->
             </div>
-            <div class="screen-first__text">
+            <div class="screen__text">
               <h1>Leave the logistics to us</h1>
               <p>Scroll to explore</p>
               <ul>
@@ -1117,9 +1120,64 @@
             </div>
           </div>
         </section>
-        <section class="fs-section" id="fp-2">
-          <p>text</p>
+        <section class="section" id="fp-2">
+          <div class="screen-second flex-centered-content">
+            <div class="left-block text-block">
+              <h2>Who we are</h2>
+              <p>Rainier is the dynamically growing logistics and transportation company, spanning thousands of locations in North America. We provide a full range of transportation services for both common and unusual freight, delivering time-sensitive
+                and customized solutions.</p>
+              <a class="btn btn--secondary btn--lg" href="#">About us</a>
+            </div>
+            <div class="right-block">
+              <div class="screen-second__imgs">
+                <div class="screen-second-slide screen-second-slide__one active">
+                  <div class="decor canada_bg">
+                    <img src="static/img/screen2_canada_bg.png">
+                  </div>
+                  <div class="decor canada_clouds">
+                    <img src="static/img/screen2_canada_sun_clouds.png">
+                  </div>
+                  <div class="decor canada_ground">
+                    <img src="static/img/screen2_canada_ground.png">
+                  </div>
+                  <div class="decor canada_forest">
+                    <img src="static/img/screen2_canada_forest.png">
+                  </div>
+                </div>
+                <div class="screen-second-slide screen-second-slide__two"></div>
+                <div class="screen-second-slide screen-second-slide__three"></div>
+              </div>
+            </div>
+          </div>
         </section>
+        <section class="section fp-auto-height">
+          <footer>
+            <p>this is footer</p>
+          </footer>
+        </section>
+      </div>
+      <div id="scrollDown">
+        <a href="#">
+          <?xml version="1.0" encoding="utf-8"?>
+          <!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+          <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 264.3 279.9" style="enable-background:new 0 0 264.3 279.9;" xml:space="preserve">
+            <style type="text/css">
+              .esgaesge {
+                clip-path: url(#SVGID_2_);
+              }
+            </style>
+            <g>
+              <defs>
+                <rect id="SVGID_1_" width="264.3" height="279.9" /> </defs>
+              <clipPath id="SVGID_2_">
+                <use xlink:href="#SVGID_1_" style="overflow:visible;" /> </clipPath>
+              <path style="esgaesge" d="M257.1,115.6L148.8,7.2c-1.2-1.2-2.4-1.8-3.6-3c-0.6-0.6-1.2-0.6-1.8-1.2c-0.6-0.6-1.8-0.6-2.4-1.2
+		c-0.6-0.6-1.8-0.6-2.4-0.6c-0.6,0-1.2-0.6-2.4-0.6c-1.2,0-3-0.6-4.2-0.6h-0.6c-1.2,0-3,0-4.2,0.6c-0.6,0-1.2,0.6-1.8,0.6
+		c-0.6,0-1.8,0.6-2.4,0.6c-0.6,0.6-1.8,0.6-2.4,1.2c-0.6,0.6-1.2,0.6-1.8,1.2c-1.2,0.6-2.4,1.8-3.6,3h-0.6L7.1,115.6
+		c-9.5,9.5-9.5,24.4,0,33.9c4.8,4.8,10.7,7.1,16.7,7.1s11.9-2.4,16.7-7.1l67.9-67.9v174.5c0,13.1,10.7,23.8,23.8,23.8
+		c13.1,0,23.8-10.7,23.8-23.8V81.6l67.9,67.9c4.8,4.8,10.7,7.1,16.7,7.1s11.9-2.4,16.7-7.1C266.6,140,266.6,125.1,257.1,115.6" /> </g>
+          </svg>
+        </a>
       </div>
     </main>
     <!-- Footer-->

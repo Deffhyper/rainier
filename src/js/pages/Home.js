@@ -40,29 +40,64 @@ export default class Home {
       $scr_truck: $('#scr_truck'),
       $scr_snow: $('.fs-dec-3'),
       $scr_tree: $('.scr_tree')
-    }
+    };
 
-    this.scrollFlag = {label: true}
 
     // initialize after construction
     this.init();
   }
 
-  /**
-   * Example method.
-   */
-  example() {
-    console.log(this.message);
-  };
+  console(){
+
+      console.log('console');
+
+  }
+
+
+
 
   fullpagescroll(){
-    $('#fullpage').fullpage();
+      let scrollFlag = true;
+
+    $('#fullpage').fullpage({
+        paddingTop: '100px',
+        onLeave: function(index, nextIndex, direction){
+
+            if(index == 1 && direction =='down'&& scrollFlag){
+
+                TweenLite.to($('#smartDot'), 1, {
+                    scale: 400,
+                    ease: Expo.easeOut,
+                    onComplete: function () {
+                        scrollFlag = false;
+                        $('#scrollDown').addClass('active');
+                        TweenLite.to($('#smartDot'), 1,{
+                            scale: 0,
+                            top: "auto",
+                            bottom: "30px",
+                            left: "30px",
+                            ease:Expo.easeOut
+                        });
+                    }
+                });
+
+
+
+            }
+
+        }
+    });
   }
 
   bannerAnimation(){
     $('body').addClass('load');
-      const tm = new TimelineLite({onComplete:this.callBackHell()});
 
+      const tm = new TimelineLite({onComplete: ()=>{
+              this.parallaxAnimation();
+              this.fullScreenDotApped();
+              $('body').addClass('mainAnimationOver');
+              this.fullpagescroll();
+          }});
       tm.from(this.selector.$scr_ground, 3, {bottom: -240, ease:Expo.easeOut}, "time-one")
           .from(this.selector.$menu, .5, {top: -10, autoAlpha:0, ease:Expo.easeOut}, "time-one+=.5")
           .from(this.selector.$topTitle, 1.25, {top:-40, autoAlpha:0, ease:Expo.easeOut}, "time-one+=.3")
@@ -82,12 +117,8 @@ export default class Home {
           .from(this.selector.$scr_truck, 4, {xPercent: "-400%", zIndex:100, ease:Expo.easeInOut}, "time-one+=1")
           .from(this.selector.$scr_b_big, 3, {left: -50, autoAlpha:0, ease:Expo.easeInOut},"time-one+=1.2")
           .from(this.selector.$scr_snow, 1, {autoAlpha:0, ease:Expo.easeInOut},"-=2");
-
       return tm;
   }
-
-
-
 
   parallaxAnimation(){
     let request = null;
@@ -106,55 +137,55 @@ export default class Home {
       let dx = mouse.x - cx;
       let dy = mouse.y - cy;
 
-        TweenLite.to(this.selector.$scr_sun, 0, {
+        TweenLite.to(this.selector.$scr_sun, .5, {
             x: dx / 10,
             y: dy / 15,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_cloud, 0, {
+        TweenLite.to(this.selector.$scr_cloud, .5, {
             x: dx / 14,
             y: dy / 15,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_b_small, 0, {
+        TweenLite.to(this.selector.$scr_b_small, .5, {
             x: dx / 10,
             y: dy / 15,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_b_big, 0, {
+        TweenLite.to(this.selector.$scr_b_big, .5, {
             x: dx / 20,
             y: dy / 15,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_m_left, 0, {
+        TweenLite.to(this.selector.$scr_m_left, .5, {
             x: dx / 40,
             y: dy / 30,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_m_right, 0, {
+        TweenLite.to(this.selector.$scr_m_right, .5, {
             x: dx / 40,
             y: dy / 30,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_snow, 0, {
+        TweenLite.to(this.selector.$scr_snow, .5, {
             x: dx / 40,
             y: dy / 30,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_cloud_r, 0, {
+        TweenLite.to(this.selector.$scr_cloud_r, .5, {
             x: dx / 10,
             y: dy / 15,
             ease: Power1.easeOut
         });
 
-        TweenLite.to(this.selector.$scr_cloud_l, 0, {
+        TweenLite.to(this.selector.$scr_cloud_l, .5, {
             x: dx / 14,
             y: dy / 15,
             ease: Power1.easeOut
@@ -162,10 +193,20 @@ export default class Home {
     }
   }
 
-  callBackHell() {
-    this.fullpagescroll();
-    this.parallaxAnimation()
-  }
+
+    fullScreenDotApped() {
+        const $dot = $('.dot-first a');
+        let smartDot = $('<div/>', {
+            id: 'smartDot',
+            css: {
+                position: "fixed",
+                top: $dot.offset().top,
+                left: $dot.offset().left,
+
+            }
+        });
+        $('body').append(smartDot);
+    }
 
 
 
@@ -173,7 +214,7 @@ export default class Home {
    * Initialize Home page scripts.
    */
   init() {
-    this.example();
     this.bannerAnimation();
+
   }
 }

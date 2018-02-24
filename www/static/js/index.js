@@ -564,7 +564,7 @@ exports.default = new Timer();
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
@@ -578,169 +578,212 @@ var _helpers = __webpack_require__(1);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Home = function () {
-  /**
-   * Cache data, make preparations and initialize page scripts.
-   */
-  function Home() {
-    _classCallCheck(this, Home);
-
-    this.message = function () {
-      var message = 'Home page scripts initialized on';
-
-      if (_helpers.Resp.isDesk) {
-        return message + ' Desktop';
-      } else if (_helpers.Resp.isTablet) {
-        return message + ' Tablet';
-      } else if (_helpers.Resp.isMobile) {
-        return message + ' Mobile';
-      }
-    }();
-
-    this.selector = {
-      $menu: $('.header'),
-      $topTitle: $('.screen-first__text h1'),
-      $topSubTItle: $('.screen-first__text p'),
-      $scr_sun: $('#scr_sun'),
-      $scr_cloud: $('#scr_cloud'),
-      $scr_cloud_r: $('#scr_cloud_r'),
-      $scr_cloud_l: $('#scr_cloud_l'),
-      $scr_b_small: $('.scr_b_small'),
-      $scr_b_big: $('.scr_b_big'),
-      $scr_m_right: $('#scr_m_right'),
-      $scr_m_left: $('.fs-dec-1'),
-      $scr_ground: $('.screen-first__imgs svg'),
-      $scr_truck: $('#scr_truck'),
-      $scr_snow: $('.fs-dec-3'),
-      $scr_tree: $('.scr_tree')
-    };
-
-    this.scrollFlag = { label: true
-
-      // initialize after construction
-    };this.init();
-  }
-
-  /**
-   * Example method.
-   */
-
-
-  _createClass(Home, [{
-    key: 'example',
-    value: function example() {
-      console.log(this.message);
-    }
-  }, {
-    key: 'fullpagescroll',
-    value: function fullpagescroll() {
-      $('#fullpage').fullpage();
-    }
-  }, {
-    key: 'bannerAnimation',
-    value: function bannerAnimation() {
-      $('body').addClass('load');
-      var tm = new TimelineLite({ onComplete: this.callBackHell() });
-
-      tm.from(this.selector.$scr_ground, 3, { bottom: -240, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_tree, 2.7, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
-
-      return tm;
-    }
-  }, {
-    key: 'parallaxAnimation',
-    value: function parallaxAnimation() {
-      var _this = this;
-
-      var request = null;
-      var mouse = { x: 0, y: 0 };
-      var cx = window.innerWidth / 2;
-      var cy = window.innerHeight / 2;
-
-      $('body').on('mousemove', function (event) {
-        mouse.x = event.pageX;
-        mouse.y = event.pageY;
-        cancelAnimationFrame(request);
-        request = requestAnimationFrame(update);
-      });
-
-      var update = function update() {
-        var dx = mouse.x - cx;
-        var dy = mouse.y - cy;
-
-        TweenLite.to(_this.selector.$scr_sun, 0, {
-          x: dx / 10,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_cloud, 0, {
-          x: dx / 14,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_b_small, 0, {
-          x: dx / 10,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_b_big, 0, {
-          x: dx / 20,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_m_left, 0, {
-          x: dx / 40,
-          y: dy / 30,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_m_right, 0, {
-          x: dx / 40,
-          y: dy / 30,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_snow, 0, {
-          x: dx / 40,
-          y: dy / 30,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_cloud_r, 0, {
-          x: dx / 10,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-
-        TweenLite.to(_this.selector.$scr_cloud_l, 0, {
-          x: dx / 14,
-          y: dy / 15,
-          ease: Power1.easeOut
-        });
-      };
-    }
-  }, {
-    key: 'callBackHell',
-    value: function callBackHell() {
-      this.fullpagescroll();
-      this.parallaxAnimation();
-    }
-
     /**
-     * Initialize Home page scripts.
+     * Cache data, make preparations and initialize page scripts.
      */
+    function Home() {
+        _classCallCheck(this, Home);
 
-  }, {
-    key: 'init',
-    value: function init() {
-      this.example();
-      this.bannerAnimation();
+        this.message = function () {
+            var message = 'Home page scripts initialized on';
+
+            if (_helpers.Resp.isDesk) {
+                return message + ' Desktop';
+            } else if (_helpers.Resp.isTablet) {
+                return message + ' Tablet';
+            } else if (_helpers.Resp.isMobile) {
+                return message + ' Mobile';
+            }
+        }();
+
+        this.selector = {
+            $menu: $('.header'),
+            $topTitle: $('.screen-first__text h1'),
+            $topSubTItle: $('.screen-first__text p'),
+            $scr_sun: $('#scr_sun'),
+            $scr_cloud: $('#scr_cloud'),
+            $scr_cloud_r: $('#scr_cloud_r'),
+            $scr_cloud_l: $('#scr_cloud_l'),
+            $scr_b_small: $('.scr_b_small'),
+            $scr_b_big: $('.scr_b_big'),
+            $scr_m_right: $('#scr_m_right'),
+            $scr_m_left: $('.fs-dec-1'),
+            $scr_ground: $('.screen-first__imgs svg'),
+            $scr_truck: $('#scr_truck'),
+            $scr_snow: $('.fs-dec-3'),
+            $scr_tree: $('.scr_tree')
+        };
+
+        // initialize after construction
+        this.init();
     }
-  }]);
 
-  return Home;
+    _createClass(Home, [{
+        key: 'console',
+        value: function (_console) {
+            function console() {
+                return _console.apply(this, arguments);
+            }
+
+            console.toString = function () {
+                return _console.toString();
+            };
+
+            return console;
+        }(function () {
+
+            console.log('console');
+        })
+    }, {
+        key: 'fullpagescroll',
+        value: function fullpagescroll() {
+            var scrollFlag = true;
+
+            $('#fullpage').fullpage({
+                paddingTop: '100px',
+                onLeave: function onLeave(index, nextIndex, direction) {
+
+                    if (index == 1 && direction == 'down' && scrollFlag) {
+
+                        TweenLite.to($('#smartDot'), 1, {
+                            scale: 400,
+                            ease: Expo.easeOut,
+                            onComplete: function onComplete() {
+                                scrollFlag = false;
+                                $('#scrollDown').addClass('active');
+                                TweenLite.to($('#smartDot'), 1, {
+                                    scale: 0,
+                                    top: "auto",
+                                    bottom: "30px",
+                                    left: "30px",
+                                    ease: Expo.easeOut
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'bannerAnimation',
+        value: function bannerAnimation() {
+            var _this = this;
+
+            $('body').addClass('load');
+
+            var tm = new TimelineLite({ onComplete: function onComplete() {
+                    _this.parallaxAnimation();
+                    _this.fullScreenDotApped();
+                    $('body').addClass('mainAnimationOver');
+                    _this.fullpagescroll();
+                } });
+            tm.from(this.selector.$scr_ground, 3, { bottom: -240, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_tree, 2.7, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
+            return tm;
+        }
+    }, {
+        key: 'parallaxAnimation',
+        value: function parallaxAnimation() {
+            var _this2 = this;
+
+            var request = null;
+            var mouse = { x: 0, y: 0 };
+            var cx = window.innerWidth / 2;
+            var cy = window.innerHeight / 2;
+
+            $('body').on('mousemove', function (event) {
+                mouse.x = event.pageX;
+                mouse.y = event.pageY;
+                cancelAnimationFrame(request);
+                request = requestAnimationFrame(update);
+            });
+
+            var update = function update() {
+                var dx = mouse.x - cx;
+                var dy = mouse.y - cy;
+
+                TweenLite.to(_this2.selector.$scr_sun, .5, {
+                    x: dx / 10,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_cloud, .5, {
+                    x: dx / 14,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_b_small, .5, {
+                    x: dx / 10,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_b_big, .5, {
+                    x: dx / 20,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_m_left, .5, {
+                    x: dx / 40,
+                    y: dy / 30,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_m_right, .5, {
+                    x: dx / 40,
+                    y: dy / 30,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_snow, .5, {
+                    x: dx / 40,
+                    y: dy / 30,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_cloud_r, .5, {
+                    x: dx / 10,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+
+                TweenLite.to(_this2.selector.$scr_cloud_l, .5, {
+                    x: dx / 14,
+                    y: dy / 15,
+                    ease: Power1.easeOut
+                });
+            };
+        }
+    }, {
+        key: 'fullScreenDotApped',
+        value: function fullScreenDotApped() {
+            var $dot = $('.dot-first a');
+            var smartDot = $('<div/>', {
+                id: 'smartDot',
+                css: {
+                    position: "fixed",
+                    top: $dot.offset().top,
+                    left: $dot.offset().left
+
+                }
+            });
+            $('body').append(smartDot);
+        }
+
+        /**
+         * Initialize Home page scripts.
+         */
+
+    }, {
+        key: 'init',
+        value: function init() {
+            this.bannerAnimation();
+        }
+    }]);
+
+    return Home;
 }();
 
 exports.default = Home;
