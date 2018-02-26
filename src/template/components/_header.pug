@@ -1,12 +1,20 @@
 mixin header()
+
     header(class="header header-fix")
         .container.header-container
             .header-left
                 .logo
                     a(href="/")
                         include ../../img/logo.svg
+                .mob-menu-trigger
+                    a(href="#")
+                        +svg('menu')
+
                 nav.header-nav
-                    ul.list-inline
+                    .mob-close-menu
+                        a(href="#" class="close")
+
+                    ul.list-inline.header-mob-navigate
                         li
                             a(href="#") About us
                         li
@@ -18,8 +26,19 @@ mixin header()
                         li
                             a.header-auth(href="#") Sign in
 
+                    ul.list-inline.header-mob-social
+                        li
+                            a(href="#")
+                                +svg('linkedin')
+                        li
+                            a(href="#")
+                                +svg('facebook')
+                        li
+                            a(href="#")
+                                +svg('twitter')
+
             .header-right
                 .header-tel
                     a(href="tel:6178889692") (617) 888-9692
                 .header-request
-                    a(href="#" class="btn btn--md btn--main")  Request a quote
+                    a(href="#" class="btn btn--md btn--main", data-target="modal" data-modal="#modal-form")  Request a quote

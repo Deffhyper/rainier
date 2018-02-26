@@ -5,6 +5,8 @@ block variables
 
 block main
     main.content(data-page='home')
+        .page-navigate
+
         #fullpage
             section#fp-1.section
                 .screen.flex-centered-content
@@ -32,25 +34,107 @@ block main
                         a(href="#", class="btn btn--secondary btn--lg") About us
 
                     .right-block
-                        .screen-second__imgs
-                            .screen-second-slide.screen-second-slide__one.active
-                                .decor.canada_bg
-                                    img(src="static/img/screen2_canada_bg.png")
-                                .decor.canada_clouds
-                                    img(src="static/img/screen2_canada_sun_clouds.png")
-                                .decor.canada_ground
-                                    img(src="static/img/screen2_canada_ground.png")
-                                .decor.canada_forest
-                                    img(src="static/img/screen2_canada_forest.png")
+                        .cities-tabs-wrapper
+                            .cities-tab.cities-tab__america
+                                .decor_tabs_wrapper
+                                    .decor.america_bg
+                                        img(src="static/img/screen2_ny_bg.png")
+                                    .decor.america_clouds_sun
+                                        img(src="static/img/screen2_ny_clouds_sun.png")
+                                    .decor.america_ground
+                                            img(src="static/img/screen2_ny_ground.png")
+                                    .decor.america_buildings
+                                        img(src="static/img/screen2_ny_buildings.png")
 
-                            .screen-second-slide.screen-second-slide__two
 
-                            .screen-second-slide.screen-second-slide__three
+
+                            .cities-tab.cities-tab__canada.active
+                                .decor_tabs_wrapper
+                                    .decor.canada_bg
+                                        img(src="static/img/screen2_canada_bg.png")
+                                    .decor.canada_clouds
+                                        img(src="static/img/screen2_canada_sun_clouds.png")
+                                    .decor.canada_ground
+                                        img(src="static/img/screen2_canada_ground.png")
+                                    .decor.canada_forest
+                                        img(src="static/img/screen2_canada_forest.png")
+
+
+
+                            .cities-tab.cities-tab__mexica
+                                .decor_tabs_wrapper
+                                    .decor.mexica_bg
+                                        img(src="static/img/screen2_mexica_bg.png")
+                                    .decor.mexica_clouds
+                                        img(src="static/img/screen2_mexica_sun_clouds.png")
+                                    .decor.mexica_ground
+                                        img(src="static/img/screen2_mexica_ground.png")
+                                    .decor.mexica_buildings
+                                        img(src="static/img/screen2_mexica_buildings.png")
+                        .decor.decor_truck
+                                img(src="static/img/truck_all_sscreen.png")
+                    .tabs-nav
+                        ul
+                            li
+                                a(href="#") America
+                            li.active
+                                a(href="#") Canada
+                            li
+                                a(href="#") Mexico
+                        .tabs-label
 
 
             section.section.fp-auto-height
-                footer
-                    p this is footer
+                footer.footer
+                    .container
+                        .footer-left
+                            .col-left
+                                .footer-logo
+                                    a(href="#")
+                                        include ../../img/logo.svg
+                                a.btn.btn--sm.btn--white(href="#") Get in touch
+                                .footer-copyright
+                                    span © 2017 Rainier
+                            .col-right
+                                .footer-nav
+                                    ul.list-inline
+                                        li
+                                            a(href="#") About us
+                                        li
+                                            a(href="#") Services
+                                        li
+                                            a(href="#") Join us
+                                        li
+                                            a(href="#") Contacts
+                                        li
+                                            a(href="#") Privacy Policy
+                                .footer-social
+                                    ul.list-inline
+                                        li
+                                            a(href="#")
+                                                img(src="static/img/svg_icons/linkedin.svg")
+                                        li
+                                            a(href="#")
+                                                img(src="static/img/svg_icons/facebook.svg")
+                                        li
+                                            a(href="#")
+                                                img(src="static/img/svg_icons/twitter.svg")
+
+                        .footer-right
+                            a.btn.btn--sm.btn--white(href="#") Get in touch
+                            div.vintage by
+                                a(href="#")
+                                    +svg('vintage-logo')
+
+                        .footer-mob
+                            .footer-copyright
+                                span © 2017 Rainier
+
+                            div.vintage by
+                                a(href="#")
+                                    +svg('vintage-logo')
+
+
         #scrollDown
             a(href="#")
                 include ../../img/arrow.svg

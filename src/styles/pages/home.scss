@@ -13,14 +13,6 @@ body {
 }
 
 
-
-.full-container {
-  padding: 1px 0;
-  min-height: 100vh;
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
 .screen {
   overflow: hidden;
   &__text {
@@ -72,6 +64,7 @@ body {
     svg {
       margin-bottom: -8px;
       overflow: visible;
+      position: relative;
     }
   }
 
@@ -106,6 +99,9 @@ body {
   z-index: 1;
 }
 .text-block {
+  &>* {
+    position: relative;
+  }
   h2 {
     margin-bottom: 15px;
   }
@@ -118,26 +114,11 @@ body {
  overflow: hidden;
 }
 
-.Rounded_Rectangle_2 {
-  border-radius: 50%;
-  background-image: -moz-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
-  background-image: -webkit-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
-  background-image: -ms-linear-gradient( -17deg, rgb(56,178,218) 0%, rgb(59,143,209) 32%, rgb(61,107,199) 77%);
-  position: absolute;
-  left: 60px;
-  top: 1384px;
-  width: 31px;
-  height: 31px;
-  z-index: 69;
-}
-
-
 #scrollDown {
   a{
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: $text-accent;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -171,45 +152,95 @@ body {
   }
 }
 
-#fp-2 {
+.screen-second {
   background-image: url("../img/screen2_bg.png");
   background-repeat: no-repeat;
-  background-position: 120% 0;
-  background-size: contain;
+  background-position: -140% 60%;
+  background-size: 120%;
 }
 
-.screen-second__imgs {
+.cities-tab {
+  display: none;
+  &.active {
+    display: block;
+  }
 
-  .screen-second-slide {
-    display: none;
-    &.active {
-      display: block;
+  &__canada {
+    .canada_bg {
+      position: absolute;
+      left: 0;
+      bottom: 114px;
+      width: 1030px;
     }
-
-    &__one {
-      .canada_bg {
-        position: absolute;
-        left: 0;
-        bottom: 114px;
-        width: 1030px;
-      }
-      .canada_ground {
-        bottom: 103px;
-        left: 14px;
-        width: 1000px;
-      }
-      .canada_forest {
-        bottom: 114px;
-        left: 14px;
-        width: 1000px;
-      }
-      .canada_clouds {
-        bottom: 305px;
-        right: -2%;
-        width: 70%;
-      }
+    .canada_ground {
+      bottom: 103px;
+      left: 14px;
+      width: 1000px;
+    }
+    .canada_forest {
+      bottom: 114px;
+      left: 14px;
+      width: 1000px;
+    }
+    .canada_clouds {
+      bottom: 330px;
+      left: 255px;
+      width: 500px;
     }
   }
+  &__america {
+    .america_bg {
+      position: absolute;
+      left: 0;
+      bottom: 114px;
+      width: 1030px;
+    }
+    .america_clouds_sun {
+      bottom: 330px;
+      left: 255px;
+      width: 500px;
+    }
+    .america_ground {
+      bottom: 115px;
+      left: 21px;
+      width: 1000px;
+    }
+    .america_buildings {
+      bottom: 115px;
+      left: 220px;
+      width: 1000px;
+    }
+  }
+  &__mexica {
+    .mexica_bg {
+      position: absolute;
+      left: 0;
+      bottom: 114px;
+      width: 1030px;
+    }
+    .mexica_clouds {
+      bottom: 330px;
+      left: 255px;
+      width: 500px;
+    }
+    .mexica_ground {
+      bottom: 115px;
+      left: 21px;
+      width: 1000px;
+    }
+    .mexica_buildings {
+      bottom: 115px;
+      left: 60px;
+      width: 900px;
+    }
+
+  }
+}
+
+.decor.decor_truck {
+  bottom: 120px;
+  width: 23%;
+  left: 37%;
 }
 
 .right-block {
@@ -224,4 +255,62 @@ body {
 .section {
   height: 100vh;
   overflow: hidden;
+}
+
+.tabs-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 70%;
+    margin: 0 auto;
+    height: 77px;
+  }
+  .active {
+    a {
+      color: #383737;
+    }
+  }
+
+  a{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: $font-bold;
+    color: #9b9b9b;
+  }
+}
+
+.tabs-label{
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  background-image: -webkit-linear-gradient( 135deg, rgb(251,184,107) 0%, rgb(249,172,84) 32%, rgb(247,160,61) 77%);
+  background-image: -o-linear-gradient( 135deg, rgb(251,184,107) 0%, rgb(249,172,84) 32%, rgb(247,160,61) 77%);
+  background-image: linear-gradient( -45deg, rgb(251,184,107) 0%, rgb(249,172,84) 32%, rgb(247,160,61) 77%);
+  box-shadow: 0px 6px 10px 0px rgba(215, 128, 26, 0.35);
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  transition: .3s ease-in-out;
+}
+
+.decor_tabs_wrapper{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.footer-mob {
+  display: none;
+}
+.footer-left .col-left {
+  .btn {
+    display: none;
+  }
 }

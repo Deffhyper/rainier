@@ -598,8 +598,8 @@ var Home = function () {
 
         this.selector = {
             $menu: $('.header'),
-            $topTitle: $('.screen-first__text h1'),
-            $topSubTItle: $('.screen-first__text p'),
+            $topTitle: $('.screen__text h1'),
+            $topSubTItle: $('.screen__text p'),
             $scr_sun: $('#scr_sun'),
             $scr_cloud: $('#scr_cloud'),
             $scr_cloud_r: $('#scr_cloud_r'),
@@ -608,10 +608,12 @@ var Home = function () {
             $scr_b_big: $('.scr_b_big'),
             $scr_m_right: $('#scr_m_right'),
             $scr_m_left: $('.fs-dec-1'),
-            $scr_ground: $('.screen-first__imgs svg'),
+            $scr_ground: $('#first_stage_svg'),
             $scr_truck: $('#scr_truck'),
             $scr_snow: $('.fs-dec-3'),
-            $scr_tree: $('.scr_tree')
+
+            $st_second_text: $('.screen-second .text-block > *')
+
         };
 
         // initialize after construction
@@ -637,29 +639,46 @@ var Home = function () {
     }, {
         key: 'fullpagescroll',
         value: function fullpagescroll() {
+            var _this = this;
+
             var scrollFlag = true;
 
             $('#fullpage').fullpage({
-                paddingTop: '100px',
+                // paddingTop: '100px',
                 onLeave: function onLeave(index, nextIndex, direction) {
 
                     if (index == 1 && direction == 'down' && scrollFlag) {
 
-                        TweenLite.to($('#smartDot'), 1, {
+                        var tm = new TimelineLite({ onComplete: function onComplete() {
+                                _this.citiesTabParallaxAnimation();
+                            } });
+
+                        tm.to($('#smartDot'), 1, {
                             scale: 400,
-                            ease: Expo.easeOut,
-                            onComplete: function onComplete() {
-                                scrollFlag = false;
-                                $('#scrollDown').addClass('active');
-                                TweenLite.to($('#smartDot'), 1, {
-                                    scale: 0,
-                                    top: "auto",
-                                    bottom: "30px",
-                                    left: "30px",
-                                    ease: Expo.easeOut
-                                });
-                            }
-                        });
+                            ease: Expo.easeOut
+                        }).add(function () {
+                            return scrollFlag = false;
+                        }).add(function () {
+                            return $('#scrollDown').addClass('active');
+                        }).to($('.screen-second .text-block > *'), 0, {
+                            opacity: 0,
+                            y: -15
+                        }).to($('#smartDot'), 1, {
+                            scale: 0,
+                            top: "auto",
+                            bottom: "30px",
+                            left: "30px",
+                            ease: Expo.easeOut
+                        }).staggerTo($('.screen-second .text-block > *'), 1, {
+                            opacity: 1,
+                            y: 0,
+                            ease: Expo.easeInOut
+                        }, 0.1, "-=1").from($('.decor_truck'), 1.5, {
+                            x: -300,
+                            ease: Expo.easeInOut
+                        }, "-=1.7");
+                    } else if (index == 1 && direction == 'up') {
+                        _this.bannerAnimation();
                     }
                 }
             });
@@ -667,23 +686,23 @@ var Home = function () {
     }, {
         key: 'bannerAnimation',
         value: function bannerAnimation() {
-            var _this = this;
+            var _this2 = this;
 
-            $('body').addClass('load');
-
+            if (!$('body').hasClass('load')) {
+                $('body').addClass('load');
+            }
             var tm = new TimelineLite({ onComplete: function onComplete() {
-                    _this.parallaxAnimation();
-                    _this.fullScreenDotApped();
+                    _this2.parallaxAnimation();
+                    _this2.fullScreenDotApped();
                     $('body').addClass('mainAnimationOver');
-                    _this.fullpagescroll();
+                    _this2.fullpagescroll();
                 } });
-            tm.from(this.selector.$scr_ground, 3, { bottom: -240, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 1.25, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_tree, 2.7, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
-            return tm;
+            tm.from(this.selector.$scr_ground, 2, { bottom: -500, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
         }
     }, {
         key: 'parallaxAnimation',
         value: function parallaxAnimation() {
-            var _this2 = this;
+            var _this3 = this;
 
             var request = null;
             var mouse = { x: 0, y: 0 };
@@ -701,55 +720,47 @@ var Home = function () {
                 var dx = mouse.x - cx;
                 var dy = mouse.y - cy;
 
-                TweenLite.to(_this2.selector.$scr_sun, .5, {
+                TweenLite.to(_this3.selector.$scr_sun, .5, {
                     x: dx / 10,
                     y: dy / 15,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_cloud, .5, {
+                TweenLite.to(_this3.selector.$scr_cloud, .5, {
                     x: dx / 14,
                     y: dy / 15,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_b_small, .5, {
+                TweenLite.to(_this3.selector.$scr_b_small, .5, {
                     x: dx / 10,
                     y: dy / 15,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_b_big, .5, {
+                TweenLite.to(_this3.selector.$scr_b_big, .5, {
                     x: dx / 20,
                     y: dy / 15,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_m_left, .5, {
+                TweenLite.to(_this3.selector.$scr_m_left, .5, {
                     x: dx / 40,
                     y: dy / 30,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_m_right, .5, {
+                TweenLite.to(_this3.selector.$scr_m_right, .5, {
                     x: dx / 40,
                     y: dy / 30,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_snow, .5, {
+                TweenLite.to(_this3.selector.$scr_snow, .5, {
                     x: dx / 40,
                     y: dy / 30,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_cloud_r, .5, {
+                TweenLite.to(_this3.selector.$scr_cloud_r, .5, {
                     x: dx / 10,
                     y: dy / 15,
                     ease: Power1.easeOut
                 });
-
-                TweenLite.to(_this2.selector.$scr_cloud_l, .5, {
+                TweenLite.to(_this3.selector.$scr_cloud_l, .5, {
                     x: dx / 14,
                     y: dy / 15,
                     ease: Power1.easeOut
@@ -766,10 +777,178 @@ var Home = function () {
                     position: "fixed",
                     top: $dot.offset().top,
                     left: $dot.offset().left
-
                 }
             });
             $('body').append(smartDot);
+        }
+    }, {
+        key: 'citiesTabParallaxAnimation',
+        value: function citiesTabParallaxAnimation() {
+            var request = null;
+            var mouse = { x: 0, y: 0 };
+            var cx = window.innerWidth / 2;
+            var cy = window.innerHeight / 2;
+
+            $('body').on('mousemove', function (event) {
+                mouse.x = event.pageX;
+                mouse.y = event.pageY;
+                cancelAnimationFrame(request);
+                request = requestAnimationFrame(update);
+            });
+
+            var update = function update() {
+                var dx = mouse.x - cx;
+                var dy = mouse.y - cy;
+
+                TweenLite.to($('.canada_bg, .america_bg, .mexica_bg'), .5, {
+                    x: dx / 40,
+                    y: dy / 70,
+                    ease: Power1.easeOut
+                });
+                TweenLite.to($('.canada_clouds, .america_clouds_sun, .mexica_clouds'), .5, {
+                    x: dx / 30,
+                    y: dy / 70,
+                    ease: Power1.easeOut
+                });
+                TweenLite.to($('.canada_forest, .america_buildings, .mexica_buildings'), .5, {
+                    x: dx / 20,
+                    y: dy / 70,
+                    ease: Power1.easeOut
+                });
+                TweenLite.to($('.canada_ground, .america_ground, .mexica_ground'), .5, {
+                    x: dx / 50,
+                    y: dy / 50,
+                    ease: Power1.easeOut
+                });
+                TweenLite.to($('.canada_truck, .america_truck, .mexica_truck'), .5, {
+                    x: dx / 50,
+                    y: dy / 60,
+                    ease: Power1.easeOut
+                });
+            };
+        }
+    }, {
+        key: 'tabSwith',
+        value: function tabSwith() {
+            $('.tabs-nav').find('li').on('click', function () {
+                var _this4 = this;
+
+                var index = $(this).index();
+                var tl = new TimelineLite();
+                if (!$(this).hasClass('active')) {
+                    tl.to($('.cities-tab .decor_tabs_wrapper'), .5, {
+                        opacity: 0,
+                        x: 50,
+                        ease: Power1.easeOut
+                    }).to($('.decor_truck'), .1, {
+                        opacity: 0,
+                        ease: Power1.easeOut
+                    }, "-=.5").add(function () {
+                        checkTab();
+                    }).to($('.decor_truck'), 0, {
+                        x: -300,
+                        opacity: 0
+                    }, "-=1").to($('.cities-tab .decor_tabs_wrapper'), .5, {
+                        opacity: 1,
+                        x: 0,
+                        ease: Power1.easeOut
+                    }).to($('.decor_truck'), 2, {
+                        opacity: 1,
+                        x: 0,
+                        ease: Expo.easeOut
+                    }, "-=.5");
+                }
+
+                var checkTab = function checkTab() {
+                    $(_this4).addClass('active').siblings().removeClass('active');
+                    $('.cities-tabs-wrapper').find('.cities-tab').eq(index).addClass('active').siblings().removeClass('active');
+
+                    var elem = $('.tabs-nav').find('li.active');
+                    var offsetLeft = elem.offset().left;
+                    var elemWidthHalf = elem.innerWidth() / 7;
+
+                    $('.tabs-label').css({
+                        left: offsetLeft + elemWidthHalf
+                    });
+                };
+            });
+        }
+    }, {
+        key: 'checkTsbLabel',
+        value: function checkTsbLabel() {
+            var elem = $('.tabs-nav').find('li.active');
+            var offsetLeft = elem.offset().left;
+            var elemWidthHalf = elem.innerWidth() / 7;
+
+            $('.tabs-label').css({
+                left: offsetLeft + elemWidthHalf
+            });
+        }
+    }, {
+        key: 'scrollDownArrow',
+        value: function scrollDownArrow() {
+            $(document).on('click', '#scrollDown', function () {
+                $.fn.fullpage.moveSectionDown();
+            });
+        }
+    }, {
+        key: 'modalInit',
+        value: function modalInit() {
+
+            $('[data-target="modal"]').click(function (event) {
+                event.preventDefault();
+
+                var current = $(this).data('modal');
+
+                alert(current);
+            });
+
+            //     $('#overlay').fadeIn(400,
+            //         function () {
+            //             $('#modal_form')
+            //                 .css('display', 'block')
+            //                 .animate({opacity: 1, top: '50%'}, 200);
+            //         });
+            // });
+            //
+            // $('#modal_close, #overlay').click(function () {
+            //     $('#modal_form')
+            //         .animate({opacity: 0, top: '45%'}, 200,
+            //             function () {
+            //                 $(this).css('display', 'none');
+            //                 $('#overlay').fadeOut(400);
+            //             }
+            //         );
+            // });
+        }
+    }, {
+        key: 'openMobMrnu',
+        value: function openMobMrnu() {
+            $('.mob-menu-trigger').on('click', function () {
+
+                var tm = new TimelineLite();
+
+                tm.to($('.header-nav'), .5, {
+                    left: 0,
+                    ease: Expo.easeOut
+                }).add(function () {
+                    $('.header').addClass('mob-menu-open');
+                });
+            });
+        }
+    }, {
+        key: 'closeMobMenu',
+        value: function closeMobMenu() {
+            $('.mob-close-menu').on('click', function (e) {
+                e.preventDefault();
+                var tm = new TimelineLite();
+                tm.to($('.header-nav'), 0, {
+                    left: -380,
+                    ease: Expo.easeOut
+                }).add(function () {
+                    $('.header').removeClass('mob-menu-open');
+                });
+            });
         }
 
         /**
@@ -780,6 +959,12 @@ var Home = function () {
         key: 'init',
         value: function init() {
             this.bannerAnimation();
+            this.tabSwith();
+            this.scrollDownArrow();
+            this.checkTsbLabel();
+            this.modalInit();
+            this.openMobMrnu();
+            this.closeMobMenu();
         }
     }]);
 

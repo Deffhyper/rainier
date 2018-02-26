@@ -7,7 +7,6 @@
 @import 'partials/variables';
 @import 'partials/fonts';
 @import 'partials/helpers';
-@import 'partials/keyframes';
 @import 'partials/svg';
 @import 'partials/typography';
 
@@ -18,3 +17,5 @@
 
 /* PAGES */
 @import 'pages/home';
+
+@import 'partials/media';

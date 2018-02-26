@@ -59,7 +59,7 @@ function compileCss(src, dest) {
     }))
     .pipe(postcss(processors))
     .pipe(gulpif(config.production, rename({
-      suffix: '',
+      suffix: '.min',
       extname: '.css'
     })))
     .pipe(gulpif(config.development, sourcemaps.write()))
