@@ -653,13 +653,12 @@ var Home = function () {
                                 _this.citiesTabParallaxAnimation();
                             } });
 
-                        tm.to($('#smartDot'), 1, {
+                        tm.to($('#smartDot'), 1.5, {
                             scale: 400,
                             ease: Expo.easeOut
                         }).add(function () {
-                            return scrollFlag = false;
-                        }).add(function () {
-                            return $('#scrollDown').addClass('active');
+                            $('#scrollDown').addClass('active');
+                            scrollFlag = false;
                         }).to($('.screen-second .text-block > *'), 0, {
                             opacity: 0,
                             y: -15
@@ -677,8 +676,12 @@ var Home = function () {
                             x: -300,
                             ease: Expo.easeInOut
                         }, "-=1.7");
-                    } else if (index == 1 && direction == 'up') {
+                    } else if (index == 2 && direction == 'up') {
                         _this.bannerAnimation();
+                    } else if (nextIndex == 3 && direction == 'down') {
+                        $('.header').addClass("bottom");
+                    } else if (nextIndex == 2 && direction == 'up') {
+                        $('.header').removeClass("bottom");
                     }
                 }
             });
@@ -691,11 +694,17 @@ var Home = function () {
             if (!$('body').hasClass('load')) {
                 $('body').addClass('load');
             }
+
+            var fpscrollFlag = true;
+
             var tm = new TimelineLite({ onComplete: function onComplete() {
                     _this2.parallaxAnimation();
                     _this2.fullScreenDotApped();
                     $('body').addClass('mainAnimationOver');
-                    _this2.fullpagescroll();
+                    if (fpscrollFlag) {
+                        _this2.fullpagescroll();
+                        fpscrollFlag = false;
+                    }
                 } });
             tm.from(this.selector.$scr_ground, 2, { bottom: -500, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
         }

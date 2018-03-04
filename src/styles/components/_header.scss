@@ -7,6 +7,12 @@
     top: 0;
     width: 100%;
     z-index: 2;
+
+
+    &.bottom {
+      top: -100px !important;
+      transition: .6s ease;
+    }
   }
 
   &-container {
