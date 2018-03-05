@@ -612,7 +612,8 @@ var Home = function () {
             $scr_truck: $('#scr_truck'),
             $scr_snow: $('.fs-dec-3'),
 
-            $st_second_text: $('.screen-second .text-block > *')
+            $st_second_text: $('.screen-second .text-block > *'),
+            fpscrollFlag: true
 
         };
 
@@ -662,6 +663,8 @@ var Home = function () {
                         }).to($('.screen-second .text-block > *'), 0, {
                             opacity: 0,
                             y: -15
+                        }).to($('.dot-first.active'), 0, {
+                            opacity: 0
                         }).to($('#smartDot'), 1, {
                             scale: 0,
                             top: "auto",
@@ -676,6 +679,14 @@ var Home = function () {
                             x: -300,
                             ease: Expo.easeInOut
                         }, "-=1.7");
+
+                        $('.page-navigate').addClass("active");
+                        _this.navAppearAnimation();
+                    } else if (index == 1 && direction == 'down' && scrollFlag == false) {
+                        $('.page-navigate').addClass("active");
+                        _this.navAppearAnimation();
+                    } else if (nextIndex == 1 && direction == 'up') {
+                        $('.page-navigate').removeClass("active");
                     } else if (index == 2 && direction == 'up') {
                         _this.bannerAnimation();
                     } else if (nextIndex == 3 && direction == 'down') {
@@ -687,6 +698,18 @@ var Home = function () {
             });
         }
     }, {
+        key: 'navAppearAnimation',
+        value: function navAppearAnimation() {
+            var tl = new TimelineMax();
+
+            tl.to($('#navigate-line'), 9, {
+                attr: {
+                    y1: 680.11
+                },
+                ease: Expo.easeOut
+            });
+        }
+    }, {
         key: 'bannerAnimation',
         value: function bannerAnimation() {
             var _this2 = this;
@@ -695,16 +718,16 @@ var Home = function () {
                 $('body').addClass('load');
             }
 
-            var fpscrollFlag = true;
-
             var tm = new TimelineLite({ onComplete: function onComplete() {
                     _this2.parallaxAnimation();
-                    _this2.fullScreenDotApped();
-                    $('body').addClass('mainAnimationOver');
-                    if (fpscrollFlag) {
+
+                    if (_this2.selector.fpscrollFlag) {
                         _this2.fullpagescroll();
-                        fpscrollFlag = false;
+                        _this2.fullScreenDotApped();
+                        _this2.selector.fpscrollFlag = false;
                     }
+
+                    $('body').addClass('mainAnimationOver');
                 } });
             tm.from(this.selector.$scr_ground, 2, { bottom: -500, ease: Expo.easeOut }, "time-one").from(this.selector.$menu, .5, { top: -10, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.5").from(this.selector.$topTitle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.3").from(this.selector.$topSubTItle, 2, { top: -40, autoAlpha: 0, ease: Expo.easeOut }, "time-one+=.6").from(this.selector.$scr_m_right, 2.7, { xPercent: "200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_m_left, 2.7, { xPercent: "-200%", ease: Expo.easeInOut }, "time-one").from(this.selector.$scr_sun, 4, { attr: { cx: 1500, cy: 300 }, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1").from(this.selector.$scr_cloud, 4, { x: 100, y: 60, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_cloud_r, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_cloud_l, 4, { xPercent: "-100%", autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.4").from(this.selector.$scr_b_small, 4, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_truck, 4, { xPercent: "-400%", zIndex: 100, ease: Expo.easeInOut }, "time-one+=.2").from(this.selector.$scr_b_big, 3, { left: -50, autoAlpha: 0, ease: Expo.easeInOut }, "time-one+=1.2").from(this.selector.$scr_snow, 1, { autoAlpha: 0, ease: Expo.easeInOut }, "-=2");
         }

@@ -40,7 +40,8 @@ export default class Home {
             $scr_truck: $('#scr_truck'),
             $scr_snow: $('.fs-dec-3'),
 
-            $st_second_text: $('.screen-second .text-block > *')
+            $st_second_text: $('.screen-second .text-block > *'),
+            fpscrollFlag: true
 
 
 
@@ -85,6 +86,9 @@ export default class Home {
                             opacity: 0,
                             y: -15,
                         })
+                        .to($('.dot-first.active'),0,{
+                            opacity: 0
+                        })
                         .to($('#smartDot'), 1,{
                             scale: 0,
                             top: "auto",
@@ -102,6 +106,16 @@ export default class Home {
                             ease:Expo.easeInOut
                         }, "-=1.7");
 
+                    $('.page-navigate').addClass("active");
+                    this.navAppearAnimation();
+
+                } else if(index == 1 && direction =='down'&& scrollFlag ==false){
+                    $('.page-navigate').addClass("active");
+                    this.navAppearAnimation();
+
+                } else if(nextIndex == 1 && direction =='up'){
+                    $('.page-navigate').removeClass("active");
+
                 } else if(index == 2 && direction =='up'){
                     this.bannerAnimation();
 
@@ -110,9 +124,21 @@ export default class Home {
 
                 } else if(nextIndex == 2 && direction =='up'){
                     $('.header').removeClass("bottom");
+
                 }
 
             }
+        });
+    }
+
+    navAppearAnimation(){
+        let tl = new TimelineMax();
+
+        tl.to($('#navigate-line'), 9, {
+            attr:{
+                y1: 680.11
+            },
+            ease:Expo.easeOut
         });
     }
 
@@ -122,16 +148,19 @@ export default class Home {
             $('body').addClass('load');
         }
 
-        let fpscrollFlag = true;
+
 
         const tm = new TimelineLite({onComplete: ()=>{
                 this.parallaxAnimation();
-                this.fullScreenDotApped();
-                $('body').addClass('mainAnimationOver');
-                if(fpscrollFlag) {
+
+
+                if(this.selector.fpscrollFlag) {
                     this.fullpagescroll();
-                    fpscrollFlag = false;
+                    this.fullScreenDotApped();
+                    this.selector.fpscrollFlag = false;
                 }
+
+                $('body').addClass('mainAnimationOver');
 
             }});
         tm.from(this.selector.$scr_ground, 2, {bottom: -500, ease:Expo.easeOut}, "time-one")
