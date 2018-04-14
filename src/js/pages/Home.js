@@ -5,7 +5,8 @@
  */
 
 import { Resp } from '../modules/dev/_helpers';
-import {randomDigit} from '../modules/dev/_helpers';
+import { TimelineLite, TweenLite } from 'gsap';
+import 'fullpage.js';
 
 export default class Home {
     /**
@@ -39,31 +40,16 @@ export default class Home {
             $scr_ground: $('#first_stage_svg'),
             $scr_truck: $('#scr_truck'),
             $scr_snow: $('.fs-dec-3'),
-
             $st_second_text: $('.screen-second .text-block > *'),
             fpscrollFlag: true
-
-
-
         };
-
 
         // initialize after construction
         this.init();
     }
 
-    console(){
-
-        console.log('console');
-
-    }
-
-
-
-
     fullpagescroll(){
         let scrollFlag = true;
-
         $('#fullpage').fullpage({
             // paddingTop: '100px',
             onLeave: (index, nextIndex, direction)=>{
@@ -126,13 +112,12 @@ export default class Home {
                     $('.header').removeClass("bottom");
 
                 }
-
             }
         });
     }
 
     navAppearAnimation(){
-        let tl = new TimelineMax();
+        let tl = new TimelineLite();
 
         tl.to($('#navigate-line'), 9, {
             attr:{

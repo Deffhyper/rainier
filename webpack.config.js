@@ -1,4 +1,6 @@
+/* eslint-disable semi */
 'use strict';
+// eslint-disable-next-line semi
 
 const webpack        = require('webpack');
 const path           = require('path');
@@ -9,9 +11,7 @@ module.exports = {
   // Entry point
   entry: {
     'js/index': './src/js/index',
-    'js/index.jquery': './src/js/index.jquery',
-    'js/index.gsap': './src/js/index.gsap',
-    'js/index.fullpage': './src/js/index.fullpage'
+    'js/index.jquery': './src/js/index.jquery'
   },
 
   // Output settings
