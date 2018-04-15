@@ -106,10 +106,15 @@ export default class Home {
                     this.bannerAnimation();
 
                 } else if(nextIndex == 3 && direction =='down'){
-                    $('.header').addClass("bottom");
+                    this. thirdScreenAnimation();
 
-                } else if(nextIndex == 2 && direction =='up'){
+                } else if(nextIndex == 4 && direction =='down'){
+                    $('.header').addClass("bottom");
+                    $('.page-navigate').removeClass("active");
+
+                } else if(nextIndex == 3 && direction =='up'){
                     $('.header').removeClass("bottom");
+                    $('.page-navigate').addClass("active");
 
                 }
             }
@@ -369,23 +374,6 @@ export default class Home {
             alert(current);
         });
 
-        //     $('#overlay').fadeIn(400,
-        //         function () {
-        //             $('#modal_form')
-        //                 .css('display', 'block')
-        //                 .animate({opacity: 1, top: '50%'}, 200);
-        //         });
-        // });
-        //
-        // $('#modal_close, #overlay').click(function () {
-        //     $('#modal_form')
-        //         .animate({opacity: 0, top: '45%'}, 200,
-        //             function () {
-        //                 $(this).css('display', 'none');
-        //                 $('#overlay').fadeOut(400);
-        //             }
-        //         );
-        // });
 
     };
 
@@ -413,6 +401,16 @@ export default class Home {
         })
     }
 
+    thirdScreenAnimation(){
+        const tm = new TimelineLite({delay:.5});
+
+        tm.from($('.screen-third__back'), .5, {xPercent: "100%", opacity: 0, ease:Expo.easeOut})
+            .from($('.screen-third__client'), 1, {xPercent: "100%", opacity: 0, ease:Expo.easeOut}, "-=.25")
+            .from($('.screen-third__cargo'), 1, {x: 400, opacity: 0, ease:Expo.easeOut}, "-=.5")
+            .from($('.screen-third__manager'), 2, {xPercent: "-100%", opacity: 0, ease:Expo.easeOut}, "-=1.5")
+            .from($('.screen-third__bubble'), 2, {top: 300, opacity: 0, ease:Expo.easeOut}, "-=1.5");
+    }
+
 
 
 
@@ -428,5 +426,6 @@ export default class Home {
         this.modalInit();
         this.openMobMrnu();
         this.closeMobMenu();
+        this.thirdScreenAnimation();
     }
 }

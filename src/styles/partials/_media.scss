@@ -204,6 +204,16 @@
   .footer-left .col-left .btn {
     display: block;
   }
+
+  .screen-third__cargo {
+    bottom: 150px;
+    max-width: 59%;
+  }
+
+  .page-navigate.active {
+    left: 0;
+    display: none;
+  }
 }
 
 @media (max-width: 400px) {
